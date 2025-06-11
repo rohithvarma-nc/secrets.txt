@@ -1,0 +1,45 @@
+import requests
+
+# AWS Credentials (FAKE)
+AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
+AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
+# GitHub Personal Access Token (FAKE)
+GITHUB_TOKEN = "ghp_1234567890abcdefghijklmnopqrstuvwxyzABCD"
+
+# Google API Key (FAKE)
+GOOGLE_API_KEY = "AIzaSyA-1234567890abcdefghijklmnopqrstuv"
+
+# Slack Webhook URL (FAKE)
+SLACK_WEBHOOK = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+
+# Generic Password (FAKE)
+DB_PASSWORD = "SuperSecret123!"
+
+def send_slack_message(message):
+    payload = {"text": message}
+    response = requests.post(SLACK_WEBHOOK, json=payload)
+    print("Slack response:", response.status_code)
+
+def github_api_request():
+    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    response = requests.get("https://api.github.com/user", headers=headers)
+    print("GitHub API response:", response.status_code)
+
+def google_maps_request():
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address=New+York&key={GOOGLE_API_KEY}"
+    response = requests.get(url)
+    print("Google Maps API response:", response.status_code)
+
+def connect_to_database():
+    print(f"Connecting to database with password: {DB_PASSWORD}")
+
+def main():
+    send_slack_message("Testing secret scanning!")
+    github_api_request()
+    google_maps_request()
+    connect_to_database()
+
+if __name__ == "__main__":
+    main()
+
